@@ -1,0 +1,175 @@
+
+# api call for registering a user
+
+###
+POST http://127.0.0.1:8000/api/register/
+Content-Type: application/json
+
+{
+    "username":"flask",
+    "email":"flask@gmail.com",
+    "password1":"Password@123",
+    "password2":"Password@123",
+    "phone":"123456785"
+
+}
+
+
+# api call for fetching auth token (login)
+###
+POST http://127.0.0.1:8000/token/
+Content-Type: application/json
+
+{
+    "username":"flask",
+    "password":"Password@123"
+}
+
+# api call for profile create
+###
+POST http://127.0.0.1:8000/api/profile/
+Content-Type: application/json
+Authorization: Token db3ffe4484c36bc8cdbc6e63ef4a73d69262a706
+
+{
+   "age":135,
+   "gender":"male",
+   "height":165,
+   "weight":75,
+   "activity_level":"sedentary",
+   "goal":"weight_loss"
+
+}
+
+# api call for profile details
+###
+GET http://127.0.0.1:8000/api/userprofile/
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+#api call for profile update
+###
+PUT http://127.0.0.1:8000/api/userprofile/
+Content-Type: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+{
+  "id": 1,
+  "user": "django",
+  "age": 34,
+  "gender": "male",
+  "height": "165.00",
+  "weight": "74.00",
+  "target_weight": null,
+  "duration": null,
+  "activity_level": "sedentary",
+  "goal": "weight_loss",
+  "bmi": "27.55",
+  "daily_calorie_goal": 1934,
+  "profile_image": null,
+  "created_at": "2026-05-19T03:29:37.119492Z",
+  "updated_at": "2026-05-19T03:29:37.119535Z"
+}
+
+# api call for creating food log
+###
+POST http://127.0.0.1:8000/api/logs/
+Content-Type: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+{
+    "title":"rice",
+    "meal_type":"lunch",
+    "quantity":"1cup",
+    "calories":"3000"
+
+}
+
+# api call for listing all foodlog
+###
+GET http://127.0.0.1:8000/api/logs/
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+# api call for listing all foodlog with start date and end date
+###
+GET http://127.0.0.1:8000/api/logs/?start_date=2026-05-01&end_date=2026-05-20
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+
+# api call for listing all foodlog list filter by yesterday
+###
+GET http://127.0.0.1:8000/api/logs/?filter_type=yesterday
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+
+# api call for listing all foodlog list filter by thisweek
+###
+GET http://127.0.0.1:8000/api/logs/?filter_type=this_week
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+#api call for retrieving a  food log
+###
+GET http://127.0.0.1:8000/api/logs/2/
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+
+#api call for updating a  food log
+###
+PUT http://127.0.0.1:8000/api/logs/1/
+Content-Type: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+{
+    "id": 1,
+    "title": "vellayappam",
+    "image": null,
+    "meal_type": "breakfast",
+    "quantity": "4no",
+    "calories": 288,
+    "consumed_at": null,
+    "notes": null,
+    "created_at": "2026-05-19T04:48:37.156936Z",
+    "updated_at": "2026-05-19T04:48:37.156990Z",
+    "user": 1 
+}
+
+# api call for deleting a foodlog
+###
+DELETE http://127.0.0.1:8000/api/logs/2/
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+#api call for dietplan
+###
+POST  http://127.0.0.1:8000/api/diet-plan/
+Content-Type: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+{
+     "goal":"weight_gain",
+     "target_weight":75,
+     "duration": 2
+}
+
+#api call listing the summary of calories consumed
+###
+GET http://127.0.0.1:8000/api/summary/
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+#api call listing the summary of calories consumed
+###
+GET http://127.0.0.1:8000/api/summary?filter_type=yesterday
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
+
+#api call listing the summary of calories consumed
+###
+GET http://127.0.0.1:8000/api/summary?filter_type=this_week
+Accept: application/json
+Authorization: Token 569c462fdac96471df2a212f6809bf746ca7edd7
